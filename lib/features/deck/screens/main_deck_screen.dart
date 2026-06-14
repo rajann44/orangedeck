@@ -160,18 +160,13 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                     },
                     child: Row(
                       children: [
-                        AnimatedContainer(
-                          duration: const Duration(milliseconds: 200),
-                          width: 32,
-                          height: 32,
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.primary,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Icon(
-                            _showExploreGrid ? Icons.swipe_rounded : Icons.grid_view_rounded,
-                            color: Colors.white,
-                            size: 18,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            'assets/images/logo.png',
+                            width: 32,
+                            height: 32,
+                            fit: BoxFit.cover,
                           ),
                         ),
                         const Gap(10),
