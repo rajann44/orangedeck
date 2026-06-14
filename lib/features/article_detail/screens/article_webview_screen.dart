@@ -542,7 +542,7 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
             ],
           ),
           const Gap(24),
-          Divider(color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08)),
+          Divider(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08)),
           const Gap(24),
           Text(
             _readerContent ?? 'No readable text content extracted.',
@@ -560,7 +560,7 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
   Widget _buildReaderShimmer(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final blockColor = isDark ? Colors.white.withOpacity(0.04) : Colors.black.withOpacity(0.04);
+    final blockColor = isDark ? Colors.white.withValues(alpha: 0.04) : Colors.black.withValues(alpha: 0.04);
     final baseColor = isDark ? const Color(0xFF1E1E20) : const Color(0xFFE5E5EA);
     final highlightColor = isDark ? const Color(0xFF2C2C2E) : const Color(0xFFF2F2F7);
 
@@ -590,7 +590,7 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
               decoration: BoxDecoration(color: blockColor, borderRadius: BorderRadius.circular(4)),
             ),
             const Gap(24),
-            Divider(color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08)),
+            Divider(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08)),
             const Gap(24),
             ...List.generate(3, (index) => Padding(
               padding: const EdgeInsets.only(bottom: 24.0),
@@ -661,7 +661,7 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
             ],
           ),
           const Gap(24),
-          Divider(color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08)),
+          Divider(color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08)),
           const Gap(24),
           if (widget.article.text != null && widget.article.text!.isNotEmpty)
             Text(

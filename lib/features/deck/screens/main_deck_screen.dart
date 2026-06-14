@@ -200,7 +200,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                         onPressed: () {
                           final persistenceService = ref.read(persistenceServiceProvider);
                           Navigator.of(context).push(
-                            MaterialPageRoute(
+                            MaterialPageRoute<void>(
                               builder: (context) => SavedArticlesScreen(
                                   persistenceService: persistenceService),
                             ),
@@ -243,10 +243,10 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                               child: Container(
                                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                                 decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary.withOpacity(0.12),
+                                  color: theme.colorScheme.primary.withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                    color: theme.colorScheme.primary.withOpacity(0.25),
+                                    color: theme.colorScheme.primary.withValues(alpha: 0.25),
                                     width: 1.0,
                                   ),
                                 ),
@@ -302,14 +302,14 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                                           },
                                           onTap: (article) {
                                             Navigator.of(context).push(
-                                              MaterialPageRoute(
+                                              MaterialPageRoute<void>(
                                                 builder: (context) => ArticleWebviewScreen(article: article),
                                               ),
                                             );
                                           },
                                           onTapComments: (article) {
                                             Navigator.of(context).push(
-                                              MaterialPageRoute(
+                                              MaterialPageRoute<void>(
                                                 builder: (context) => ArticleWebviewScreen(
                                                   article: article,
                                                   startWithComments: true,
@@ -335,8 +335,8 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                                         gradient: LinearGradient(
                                           colors: [
                                             Colors.transparent,
-                                            scaffoldBg.withOpacity(0.4),
-                                            scaffoldBg.withOpacity(0.95),
+                                            scaffoldBg.withValues(alpha: 0.4),
+                                            scaffoldBg.withValues(alpha: 0.95),
                                           ],
                                           begin: Alignment.topCenter,
                                           end: Alignment.bottomCenter,
@@ -352,7 +352,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                                               icon: Icons.arrow_back_rounded,
                                               color: deckState.swipeHistory.isNotEmpty
                                                   ? theme.colorScheme.primary
-                                                  : (isDark ? const Color(0xFF8C8C94).withOpacity(0.3) : Colors.black12),
+                                                  : (isDark ? const Color(0xFF8C8C94).withValues(alpha: 0.3) : Colors.black12),
                                               size: 50,
                                               iconSize: 22,
                                               onTap: deckState.swipeHistory.isNotEmpty
@@ -369,12 +369,12 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                                               icon: isTopCardSaved ? Icons.bookmark_added_rounded : Icons.bookmark_add_rounded,
                                               color: deckState.cards.isNotEmpty
                                                   ? (isTopCardSaved ? theme.colorScheme.primary : const Color(0xFF10B981))
-                                                  : (isDark ? const Color(0xFF8C8C94).withOpacity(0.3) : Colors.black12),
+                                                  : (isDark ? const Color(0xFF8C8C94).withValues(alpha: 0.3) : Colors.black12),
                                               size: 60,
                                               iconSize: 28,
                                               onTap: deckState.cards.isNotEmpty
                                                   ? () async {
-                                                      HapticFeedback.mediumImpact();
+                                                      await HapticFeedback.mediumImpact();
                                                       final topCard = deckState.cards.first;
                                                       if (isTopCardSaved) {
                                                         await ref.read(savedArticlesProvider.notifier).deleteArticle(topCard.id);
@@ -391,7 +391,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                                               icon: Icons.arrow_forward_rounded,
                                               color: deckState.cards.isNotEmpty
                                                   ? const Color(0xFFEF4444)
-                                                  : (isDark ? const Color(0xFF8C8C94).withOpacity(0.3) : Colors.black12),
+                                                  : (isDark ? const Color(0xFF8C8C94).withValues(alpha: 0.3) : Colors.black12),
                                               size: 60,
                                               iconSize: 28,
                                               onTap: deckState.cards.isNotEmpty
@@ -420,10 +420,10 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
   }
 
   void _showSettingsBottomSheet(BuildContext context, WidgetRef ref) {
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withOpacity(0.55),
+      barrierColor: Colors.black.withValues(alpha: 0.55),
       builder: (context) {
         return Consumer(
           builder: (context, ref, child) {
@@ -440,8 +440,8 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                 ),
                 border: Border.all(
                   color: currentIsDark
-                      ? Colors.white.withOpacity(0.08)
-                      : Colors.black.withOpacity(0.08),
+                      ? Colors.white.withValues(alpha: 0.08)
+                      : Colors.black.withValues(alpha: 0.08),
                   width: 1.0,
                 ),
               ),
@@ -457,8 +457,8 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                       height: 4,
                       decoration: BoxDecoration(
                         color: currentIsDark
-                            ? Colors.white.withOpacity(0.12)
-                            : Colors.black.withOpacity(0.12),
+                            ? Colors.white.withValues(alpha: 0.12)
+                            : Colors.black.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -529,7 +529,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: themeAccentPalette.map((color) {
-                      final isSelected = currentThemeState.accentColor.value == color.value;
+                      final isSelected = currentThemeState.accentColor.toARGB32() == color.toARGB32();
                       return GestureDetector(
                         onTap: () {
                           HapticFeedback.selectionClick();
@@ -551,7 +551,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                             boxShadow: [
                               if (isSelected)
                                 BoxShadow(
-                                  color: color.withOpacity(0.4),
+                                  color: color.withValues(alpha: 0.4),
                                   blurRadius: 8,
                                   offset: const Offset(0, 2),
                                 ),
@@ -564,7 +564,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                                   size: 20,
                                   shadows: [
                                     Shadow(
-                                      color: Colors.black.withOpacity(0.5),
+                                      color: Colors.black.withValues(alpha: 0.5),
                                       blurRadius: 4,
                                     ),
                                   ],
@@ -611,7 +611,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
             border: Border.all(
               color: isSelected
                   ? theme.colorScheme.primary
-                  : (isDark ? Colors.white.withOpacity(0.06) : Colors.black.withOpacity(0.06)),
+                  : (isDark ? Colors.white.withValues(alpha: 0.06) : Colors.black.withValues(alpha: 0.06)),
               width: 1.0,
             ),
           ),
@@ -663,12 +663,12 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
           color: theme.colorScheme.surface,
           shape: BoxShape.circle,
           border: Border.all(
-            color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08),
+            color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
             width: 1.0,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.25),
+              color: Colors.black.withValues(alpha: 0.25),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -697,7 +697,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
           color: baseColor,
           borderRadius: BorderRadius.circular(24.0),
           border: Border.all(
-            color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08),
+            color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
             width: 1.0,
           ),
         ),
@@ -753,7 +753,7 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
           Icon(
             Icons.filter_none_rounded,
             size: 64,
-            color: isDark ? Colors.white.withOpacity(0.12) : Colors.black.withOpacity(0.12),
+            color: isDark ? Colors.white.withValues(alpha: 0.12) : Colors.black.withValues(alpha: 0.12),
           ),
           const Gap(20),
           Text(

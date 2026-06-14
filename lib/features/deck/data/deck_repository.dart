@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import '../../../shared/domain/models/article.dart';
 import 'hn_api_service.dart';
 
@@ -29,8 +30,8 @@ class DeckRepository {
           }
 
           return Article.fromJson(json);
-        }).catchError((error) {
-          print('DEBUG: Failed to fetch details for item $id: $error');
+        }).catchError((Object error) {
+          debugPrint('DEBUG: Failed to fetch details for item $id: $error');
           return null;
         }));
 

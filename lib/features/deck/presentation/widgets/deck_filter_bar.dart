@@ -40,7 +40,7 @@ class DeckFilterBar extends ConsumerWidget {
                   color: isSelected ? primaryColor : Colors.transparent,
                   borderRadius: BorderRadius.circular(16.0),
                   border: Border.all(
-                    color: isSelected ? primaryColor : (isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08)),
+                    color: isSelected ? primaryColor : (isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08)),
                     width: 1.0,
                   ),
                 ),

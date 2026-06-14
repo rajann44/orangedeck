@@ -81,7 +81,7 @@ class _ExploreCategoryCardState extends State<ExploreCategoryCard> with SingleTi
             ),
             boxShadow: [
               BoxShadow(
-                color: widget.gradientColors.first.withOpacity(isDark ? 0.3 : 0.2),
+                color: widget.gradientColors.first.withValues(alpha: isDark ? 0.3 : 0.2),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -100,7 +100,7 @@ class _ExploreCategoryCardState extends State<ExploreCategoryCard> with SingleTi
                     height: 70,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withOpacity(0.08),
+                      color: Colors.white.withValues(alpha: 0.08),
                     ),
                   ),
                 ),
@@ -116,7 +116,7 @@ class _ExploreCategoryCardState extends State<ExploreCategoryCard> with SingleTi
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.18),
+                          color: Colors.white.withValues(alpha: 0.18),
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -146,7 +146,7 @@ class _ExploreCategoryCardState extends State<ExploreCategoryCard> with SingleTi
                             style: GoogleFonts.inter(
                               fontSize: 11,
                               fontWeight: FontWeight.w500,
-                              color: Colors.white.withOpacity(0.85),
+                              color: Colors.white.withValues(alpha: 0.85),
                               height: 1.25,
                             ),
                             maxLines: 2,

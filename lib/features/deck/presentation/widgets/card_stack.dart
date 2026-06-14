@@ -6,9 +6,9 @@ import 'swipe_card.dart';
 
 class CardStack extends StatefulWidget {
   final List<Article> articles;
-  final Function(Article article, bool isSave) onSwiped;
-  final Function(Article article) onTap;
-  final Function(Article article) onTapComments;
+  final void Function(Article article, bool isSave) onSwiped;
+  final void Function(Article article) onTap;
+  final void Function(Article article) onTapComments;
 
   const CardStack({
     super.key,
@@ -195,12 +195,11 @@ class _CardStackState extends State<CardStack> with SingleTickerProviderStateMix
 
   Widget _buildTopCard(Article article, double screenWidth) {
     // Tinder style rotation: rotates up to ~15 degrees max at complete drag
-    final double maxRotation = 15.0 * math.pi / 180.0;
+    const double maxRotation = 15.0 * math.pi / 180.0;
     final double progress = (_dragOffset.dx / screenWidth).clamp(-1.0, 1.0);
     final double angle = progress * maxRotation * _rotationDirectionMultiplier;
 
-    final transform = Matrix4.identity()
-      ..translate(_dragOffset.dx, _dragOffset.dy)
+    final transform = Matrix4.translationValues(_dragOffset.dx, _dragOffset.dy, 0.0)
       ..rotateZ(angle);
 
     final normalizedProgress = _dragOffset.dx / (screenWidth * 0.35);

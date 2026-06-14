@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../domain/models/article.dart';
 
@@ -69,7 +70,7 @@ class HivePersistenceService {
         await _cacheBox.putAll(entries);
       }
     } catch (e) {
-      print('DEBUG: cacheArticles failed with error: $e');
+      debugPrint('DEBUG: cacheArticles failed with error: $e');
     }
   }
 

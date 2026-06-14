@@ -65,7 +65,7 @@ class ThemeNotifier extends StateNotifier<ThemeState> {
 
   void setAccentColor(Color color) {
     state = state.copyWith(accentColor: color);
-    _persistenceService.saveAccentColor(color.value);
+    _persistenceService.saveAccentColor(color.toARGB32());
   }
 }
 
@@ -95,7 +95,6 @@ ThemeData buildLightTheme(Color accentColor) {
       primary: accentColor,
       secondary: accentColor,
       surface: Colors.white,
-      background: const Color(0xFFF2F2F7),
     ),
     useMaterial3: true,
     textTheme: GoogleFonts.interTextTheme(ThemeData.light().textTheme),
@@ -105,7 +104,7 @@ ThemeData buildLightTheme(Color accentColor) {
       elevation: 0,
     ),
     dividerTheme: DividerThemeData(
-      color: Colors.black.withOpacity(0.08),
+      color: Colors.black.withValues(alpha: 0.08),
     ),
   );
 }
@@ -120,7 +119,6 @@ ThemeData buildDarkTheme(Color accentColor) {
       primary: accentColor,
       secondary: accentColor,
       surface: const Color(0xFF1E1E20),
-      background: const Color(0xFF0F0F10),
     ),
     useMaterial3: true,
     textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
@@ -130,7 +128,7 @@ ThemeData buildDarkTheme(Color accentColor) {
       elevation: 0,
     ),
     dividerTheme: DividerThemeData(
-      color: Colors.white.withOpacity(0.08),
+      color: Colors.white.withValues(alpha: 0.08),
     ),
   );
 }

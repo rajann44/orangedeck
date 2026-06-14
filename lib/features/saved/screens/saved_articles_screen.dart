@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gap/gap.dart';
-import '../../../shared/domain/models/article.dart';
 import '../presentation/providers/saved_notifier.dart';
 import '../../article_detail/screens/article_webview_screen.dart';
 
@@ -86,7 +85,7 @@ class SavedArticlesScreen extends ConsumerWidget {
                         color: theme.colorScheme.surface,
                         borderRadius: BorderRadius.circular(16.0),
                         border: Border.all(
-                          color: isDark ? Colors.white.withOpacity(0.06) : Colors.black.withOpacity(0.06),
+                          color: isDark ? Colors.white.withValues(alpha: 0.06) : Colors.black.withValues(alpha: 0.06),
                           width: 1.0,
                         ),
                       ),
@@ -134,7 +133,7 @@ class SavedArticlesScreen extends ConsumerWidget {
                         ),
                         onTap: () {
                           Navigator.of(context).push(
-                            MaterialPageRoute(
+                            MaterialPageRoute<void>(
                               builder: (context) => ArticleWebviewScreen(article: article),
                             ),
                           );
@@ -161,7 +160,7 @@ class SavedArticlesScreen extends ConsumerWidget {
             Icon(
               Icons.bookmark_outline_rounded,
               size: 72,
-              color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08),
+              color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
             ),
             const Gap(16),
             Text(

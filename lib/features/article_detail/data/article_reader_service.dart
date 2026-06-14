@@ -7,7 +7,7 @@ class ArticleReaderService {
   /// Fetches the raw HTML of the article URL and extracts its main text contents
   Future<String> fetchReadableContent(String url) async {
     try {
-      final response = await _dio.get(
+      final response = await _dio.get<String>(
         url,
         options: Options(
           responseType: ResponseType.plain,
@@ -64,7 +64,7 @@ class ArticleReaderService {
       // Collapse multiple whitespace
       fallback = fallback.replaceAll(RegExp(r'\s+'), ' ');
       if (fallback.length > 200) {
-        return fallback.substring(0, math.min(1500, fallback.length)) + '...';
+        return '${fallback.substring(0, math.min(1500, fallback.length))}...';
       }
       throw Exception('No readable text found on this page.');
     }

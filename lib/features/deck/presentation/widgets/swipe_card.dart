@@ -70,7 +70,7 @@ class SwipeCard extends ConsumerWidget {
             child: Container(
               decoration: BoxDecoration(
                 gradient: RadialGradient(
-                  colors: [c3.withOpacity(0.55), Colors.transparent],
+                  colors: [c3.withValues(alpha: 0.55), Colors.transparent],
                   center: const Alignment(0.4, -0.3),
                   radius: 1.3,
                 ),
@@ -93,12 +93,12 @@ class SwipeCard extends ConsumerWidget {
         color: isDark ? const Color(0xFF1E1E20) : Colors.white,
         borderRadius: BorderRadius.circular(24.0),
         border: Border.all(
-          color: isDark ? Colors.white.withOpacity(0.08) : Colors.black.withOpacity(0.08),
+          color: isDark ? Colors.white.withValues(alpha: 0.08) : Colors.black.withValues(alpha: 0.08),
           width: 1.0,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(isDark ? 0.4 : 0.15),
+            color: Colors.black.withValues(alpha: isDark ? 0.4 : 0.15),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -119,9 +119,9 @@ class SwipeCard extends ConsumerWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.black.withOpacity(0.15),
-                      Colors.black.withOpacity(0.50),
-                      Colors.black.withOpacity(0.92),
+                      Colors.black.withValues(alpha: 0.15),
+                      Colors.black.withValues(alpha: 0.50),
+                      Colors.black.withValues(alpha: 0.92),
                     ],
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -186,7 +186,7 @@ class SwipeCard extends ConsumerWidget {
                         color: Colors.white,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.6),
+                            color: Colors.black.withValues(alpha: 0.6),
                             blurRadius: 8,
                             offset: const Offset(0, 2),
                           ),
@@ -219,7 +219,7 @@ class SwipeCard extends ConsumerWidget {
                       const Gap(10),
                     ],
 
-                    Divider(color: Colors.white.withOpacity(0.12)),
+                    Divider(color: Colors.white.withValues(alpha: 0.12)),
                     const Gap(8),
 
                     // Footer Row (metrics & author)
@@ -347,10 +347,10 @@ class SwipeCard extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0F0F10).withOpacity(0.55),
+                  color: const Color(0xFF0F0F10).withValues(alpha: 0.55),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.08),
+                    color: Colors.white.withValues(alpha: 0.08),
                     width: 1.0,
                   ),
                 ),
@@ -363,7 +363,7 @@ class SwipeCard extends ConsumerWidget {
                       style: GoogleFonts.inter(
                         fontSize: 9,
                         fontWeight: FontWeight.w700,
-                        color: primaryColor.withOpacity(0.95),
+                        color: primaryColor.withValues(alpha: 0.95),
                       ),
                     ),
                     const Gap(1),
@@ -393,10 +393,10 @@ class SwipeCard extends ConsumerWidget {
     final theme = Theme.of(context);
     final primaryColor = theme.colorScheme.primary;
 
-    showModalBottomSheet(
+    showModalBottomSheet<void>(
       context: context,
       backgroundColor: Colors.transparent,
-      barrierColor: Colors.black.withOpacity(0.55),
+      barrierColor: Colors.black.withValues(alpha: 0.55),
       isScrollControlled: true,
       builder: (context) {
         return ClipRRect(
@@ -408,10 +408,10 @@ class SwipeCard extends ConsumerWidget {
                 maxHeight: MediaQuery.of(context).size.height * 0.7,
               ),
               decoration: BoxDecoration(
-                color: const Color(0xFF0F0F10).withOpacity(0.85),
+                color: const Color(0xFF0F0F10).withValues(alpha: 0.85),
                 borderRadius: const BorderRadius.vertical(top: Radius.circular(24.0)),
                 border: Border.all(
-                  color: Colors.white.withOpacity(0.08),
+                  color: Colors.white.withValues(alpha: 0.08),
                   width: 1.0,
                 ),
               ),
@@ -427,7 +427,7 @@ class SwipeCard extends ConsumerWidget {
                       width: 40,
                       height: 4,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(2),
                       ),
                     ),
@@ -472,7 +472,7 @@ class SwipeCard extends ConsumerWidget {
                             gradient: LinearGradient(
                               colors: [
                                 primaryColor,
-                                primaryColor.withOpacity(0.5),
+                                primaryColor.withValues(alpha: 0.5),
                               ],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -504,7 +504,7 @@ class SwipeCard extends ConsumerWidget {
                               _formatRelativeTime(comment.time),
                               style: GoogleFonts.inter(
                                 fontSize: 10,
-                                color: Colors.white.withOpacity(0.5),
+                                color: Colors.white.withValues(alpha: 0.5),
                               ),
                             ),
                           ],
@@ -576,7 +576,7 @@ class SwipeCard extends ConsumerWidget {
                             style: GoogleFonts.inter(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: Colors.white.withOpacity(0.6),
+                              color: Colors.white.withValues(alpha: 0.6),
                             ),
                           ),
                         ),
@@ -600,13 +600,13 @@ class SwipeCard extends ConsumerWidget {
       children: [
         Row(
           children: [
-            Icon(Icons.forum_rounded, size: 10, color: primaryColor.withOpacity(0.5)),
+            Icon(Icons.forum_rounded, size: 10, color: primaryColor.withValues(alpha: 0.5)),
             const Gap(4),
             Container(
               width: 100,
               height: 8,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.08),
+                color: Colors.white.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
@@ -617,9 +617,9 @@ class SwipeCard extends ConsumerWidget {
           height: 36,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: const Color(0xFF0F0F10).withOpacity(0.35),
+            color: const Color(0xFF0F0F10).withValues(alpha: 0.35),
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.white.withOpacity(0.08), width: 1.0),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.08), width: 1.0),
           ),
         ),
       ],
@@ -630,24 +630,24 @@ class SwipeCard extends ConsumerWidget {
     final primaryColor = Theme.of(context).colorScheme.primary;
 
     String label = 'STORY';
-    Color color = Colors.white.withOpacity(0.12);
+    Color color = Colors.white.withValues(alpha: 0.12);
     Color textColor = Colors.white;
 
     if (article.url == null || article.url!.isEmpty) {
       if (article.title.toLowerCase().startsWith('ask hn')) {
         label = 'ASK HN';
-        color = primaryColor.withOpacity(0.15);
+        color = primaryColor.withValues(alpha: 0.15);
         textColor = primaryColor;
       } else if (article.title.toLowerCase().startsWith('show hn')) {
         label = 'SHOW HN';
-        color = const Color(0xFF3B82F6).withOpacity(0.15);
+        color = const Color(0xFF3B82F6).withValues(alpha: 0.15);
         textColor = const Color(0xFF3B82F6);
       } else {
         label = 'TEXT POST';
       }
     } else if (article.title.toLowerCase().contains('job: ') || article.url!.contains('/jobs/')) {
       label = 'JOB';
-      color = const Color(0xFF10B981).withOpacity(0.15);
+      color = const Color(0xFF10B981).withValues(alpha: 0.15);
       textColor = const Color(0xFF10B981);
     }
 
@@ -657,7 +657,7 @@ class SwipeCard extends ConsumerWidget {
         color: color,
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
-          color: color.withOpacity(0.3),
+          color: color.withValues(alpha: 0.3),
           width: 1.0,
         ),
       ),
@@ -706,7 +706,7 @@ class SwipeCard extends ConsumerWidget {
         decoration: BoxDecoration(
           border: Border.all(color: borderColor, width: 4),
           borderRadius: BorderRadius.circular(12),
-          color: Colors.black.withOpacity(0.2),
+          color: Colors.black.withValues(alpha: 0.2),
         ),
         child: Text(
           text,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:dio/dio.dart';
 import '../../../../shared/data/hive_persistence_service.dart';
@@ -94,11 +95,11 @@ class DeckNotifier extends StateNotifier<DeckState> {
 
   /// Fetches story IDs from HN and starts fetching details for the first batch
   Future<void> loadFeed() async {
-    print('DEBUG: loadFeed() started for filter: ${_filter.apiKey}');
+    debugPrint('DEBUG: loadFeed() started for filter: ${_filter.apiKey}');
     state = state.copyWith(isLoading: true, errorMessage: null, cards: [], swipeHistory: [], isOffline: false);
     try {
       final ids = await _apiService.fetchStoryIds(_filter.apiKey);
-      print('DEBUG: loadFeed() successfully fetched ${ids.length} story IDs.');
+      debugPrint('DEBUG: loadFeed() successfully fetched ${ids.length} story IDs.');
       _dismissedIds.clear();
 
       if (ids.isEmpty) {
@@ -109,7 +110,7 @@ class DeckNotifier extends StateNotifier<DeckState> {
       state = state.copyWith(allFeedIds: ids, currentFeedIndex: 0);
       await fetchNextBatch();
     } catch (e) {
-      print('DEBUG: loadFeed() failed with error: $e. Falling back to cached stories.');
+      debugPrint('DEBUG: loadFeed() failed with error: $e. Falling back to cached stories.');
       // Offline fallback: load from cached box!
       final cachedArticles = _persistenceService.fetchCachedArticles();
       
@@ -137,7 +138,7 @@ class DeckNotifier extends StateNotifier<DeckState> {
 
   /// Fetches the details for the next chunk of IDs from the active feed
   Future<void> fetchNextBatch() async {
-    print('DEBUG: fetchNextBatch() started. Current index: ${state.currentFeedIndex}, Total IDs: ${state.allFeedIds.length}');
+    debugPrint('DEBUG: fetchNextBatch() started. Current index: ${state.currentFeedIndex}, Total IDs: ${state.allFeedIds.length}');
     if (state.currentFeedIndex >= state.allFeedIds.length) {
       state = state.copyWith(isLoading: false);
       return;
@@ -145,11 +146,11 @@ class DeckNotifier extends StateNotifier<DeckState> {
 
     final end = (state.currentFeedIndex + _batchSize).clamp(0, state.allFeedIds.length);
     final batchIds = state.allFeedIds.sublist(state.currentFeedIndex, end);
-    print('DEBUG: fetchNextBatch() loading items for IDs: $batchIds');
+    debugPrint('DEBUG: fetchNextBatch() loading items for IDs: $batchIds');
 
     try {
       final newArticles = await _repository.fetchArticlesBatch(batchIds);
-      print('DEBUG: fetchNextBatch() retrieved ${newArticles.length} articles from repository.');
+      debugPrint('DEBUG: fetchNextBatch() retrieved ${newArticles.length} articles from repository.');
       
       // Cache these fetched articles for offline fallback
       await _persistenceService.cacheArticles(newArticles);
@@ -159,7 +160,7 @@ class DeckNotifier extends StateNotifier<DeckState> {
         final inStack = state.cards.any((card) => card.id == article.id);
         return !_dismissedIds.contains(article.id) && !inStack;
       }).toList();
-      print('DEBUG: fetchNextBatch() filtered down to ${filtered.length} new cards.');
+      debugPrint('DEBUG: fetchNextBatch() filtered down to ${filtered.length} new cards.');
 
       state = state.copyWith(
         cards: [...state.cards, ...filtered],
@@ -167,7 +168,7 @@ class DeckNotifier extends StateNotifier<DeckState> {
         isLoading: false,
       );
     } catch (e) {
-      print('DEBUG: fetchNextBatch() failed with error: $e');
+      debugPrint('DEBUG: fetchNextBatch() failed with error: $e');
       // If error occurs and we already have cards in the stack, don't crash, just log error.
       if (state.cards.isEmpty) {
         state = state.copyWith(isLoading: false, errorMessage: e.toString());
