@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:gap/gap.dart';
+import 'contact_screen.dart';
 import '../presentation/providers/deck_notifier.dart';
 import '../presentation/widgets/card_stack.dart';
 import '../presentation/widgets/deck_filter_bar.dart';
@@ -573,6 +574,57 @@ class _MainDeckScreenState extends ConsumerState<MainDeckScreen> {
                         ),
                       );
                     }).toList(),
+                  ),
+                  const Gap(24),
+                  Divider(
+                    color: currentIsDark
+                        ? Colors.white.withValues(alpha: 0.08)
+                        : Colors.black.withValues(alpha: 0.08),
+                  ),
+                  const Gap(12),
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: currentTheme.colorScheme.primary.withValues(alpha: 0.12),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.contact_support_outlined,
+                        color: currentTheme.colorScheme.primary,
+                        size: 20,
+                      ),
+                    ),
+                    title: Text(
+                      'Contact Developer',
+                      style: GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: currentIsDark ? Colors.white : Colors.black87,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Support, feedback, or publisher inquiries',
+                      style: GoogleFonts.inter(
+                        fontSize: 11,
+                        color: const Color(0xFF8C8C94),
+                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.chevron_right_rounded,
+                      color: Color(0xFF8C8C94),
+                      size: 20,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context); // close bottom sheet
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => const ContactScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const Gap(12),
                 ],

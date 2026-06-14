@@ -1,4 +1,4 @@
-package com.orangedeck.orangedeck
+package com.aevora.orangedeck
 
 import io.flutter.embedding.android.FlutterActivity
 

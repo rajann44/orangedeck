@@ -23,6 +23,15 @@ class DeckRepository {
             return null;
           }
 
+          // Filter out articles older than 90 days (approx. 3 months) to satisfy News policy
+          final time = json['time'] as int?;
+          if (time != null) {
+            final threshold = DateTime.now().subtract(const Duration(days: 90)).millisecondsSinceEpoch ~/ 1000;
+            if (time < threshold) {
+              return null;
+            }
+          }
+
           // Title is mandatory to represent a valid card
           final title = json['title'] as String?;
           if (title == null || title.trim().isEmpty) {

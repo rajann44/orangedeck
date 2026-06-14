@@ -77,11 +77,13 @@ class HivePersistenceService {
   /// Retrieves all cached articles for offline viewing.
   List<Article> fetchCachedArticles() {
     try {
+      final threshold = DateTime.now().subtract(const Duration(days: 90)).millisecondsSinceEpoch ~/ 1000;
       final List<Article> items = _cacheBox.values
           .map((dynamic value) {
             final map = Map<String, dynamic>.from(value as Map);
             return Article.fromJson(map);
           })
+          .where((article) => article.time >= threshold)
           .toList();
       // Sort by time descending (newest first)
       items.sort((a, b) => b.time.compareTo(a.time));

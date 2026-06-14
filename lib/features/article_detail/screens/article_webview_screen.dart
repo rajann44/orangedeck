@@ -525,7 +525,15 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
           Row(
             children: [
               Text(
-                'by ${widget.article.by}',
+                'Publisher: ',
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFF8C8C94),
+                ),
+              ),
+              Text(
+                widget.article.domain,
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -533,10 +541,11 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
                 ),
               ),
               Text(
-                '  •  ▲ ${widget.article.score} points',
+                '  •  Author: ${widget.article.by}',
                 style: GoogleFonts.inter(
                   fontSize: 12,
-                  color: const Color(0xFF8C8C94),
+                  fontWeight: FontWeight.w500,
+                  color: isDark ? const Color(0xFFD4D4D8) : const Color(0xFF5C5C64),
                 ),
               ),
             ],
@@ -644,7 +653,15 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
           Row(
             children: [
               Text(
-                'by ${widget.article.by}',
+                'Publisher: ',
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFF8C8C94),
+                ),
+              ),
+              Text(
+                widget.article.domain,
                 style: GoogleFonts.inter(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -652,10 +669,11 @@ class _ArticleWebviewScreenState extends State<ArticleWebviewScreen> {
                 ),
               ),
               Text(
-                '  •  ▲ ${widget.article.score} points',
+                '  •  Author: ${widget.article.by}',
                 style: GoogleFonts.inter(
                   fontSize: 12,
-                  color: const Color(0xFF8C8C94),
+                  fontWeight: FontWeight.w500,
+                  color: isDark ? const Color(0xFFD4D4D8) : const Color(0xFF5C5C64),
                 ),
               ),
             ],
